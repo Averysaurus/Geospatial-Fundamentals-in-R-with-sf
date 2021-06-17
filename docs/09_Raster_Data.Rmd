@@ -14,7 +14,12 @@ always_allow_html: yes
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = normalizePath('../'))
+```
+
+```{r}
+# install and load here() package
+if (!require("here")) install.packages("here")
+library(here)
 ```
 
 ## Part III Prep
@@ -59,16 +64,6 @@ library(tmap)   # mapping spatial objects
 library(raster) # reading in and operating on rasters
 ```
  
-## Set your working directory
-
-Use `setwd` to set your working directory to the location of the tutorial files.
-
-For example:
-
-```{r, eval=FALSE}
-path = "~/Documents/repos/Geospatial-Fundamentals-in-R-with-sf"
-setwd(path)
-```
 
 # Load some files from Parts I and II
 
@@ -76,15 +71,15 @@ setwd(path)
 
 ```{r}
 # Read in the 'sftracts_wpop' shapefile
-SFtracts <- st_read("./notebook_data/part_3", "sftracts_wpop")
+SFtracts <- st_read(here("./notebook_data/part_3", "sftracts_wpop"))
 ```
 
 ## SF Properties 2015
 
 ```{r}
 # Read in from CSV file
-SFhomes <- read.csv('./notebook_data/part_3/sf_properties.csv', 
-                    stringsAsFactors = FALSE)
+SFhomes <- read.csv(here('./notebook_data/part_3/sf_properties.csv', 
+                    stringsAsFactors = FALSE))
 # subset the data
 SFhomes15 <- subset(SFhomes, as.numeric(SalesYear) == 2015)
 
@@ -111,7 +106,7 @@ Using the fabulous `raster` package
 
 #read in a Bay Area DEM (Digital Elevation Model)
 #(from http://www.webgis.com/terr_pages/CA/dem1/sanfrancisco.html)
-DEM = raster('./notebook_data/part_3/san_francisco-e.DEM')
+DEM = raster(here('./notebook_data/part_3/san_francisco-e.DEM'))
 ```
 
 ## Plot it
@@ -726,7 +721,7 @@ Read that file in as an object called `nlcd`, and plot it.
 
 ```{r}
 #read in nlcd data
-nlcd = raster('./notebook_data/part_3/nlcd2011_sf.tif')
+nlcd = raster(here('./notebook_data/part_3/nlcd2011_sf.tif'))
 
 #plot nlcd
 plot(nlcd)
@@ -755,7 +750,7 @@ Where do we do to figure out what the codes mean?
 This should come with the metadarad that ships with your data,
 or that is provided at the website where you downloaded it.
 
-[Here](https://www.mrlc.gov/data/legends/national-land-cover-database-2011-nlcd2011-legend)'s the NLCD legend.
+[Here is a link](https://www.mrlc.gov/data/legends/national-land-cover-database-2011-nlcd2011-legend) to the NLCD legend.
 
 
 ## Challenge 2: Reproject and crop our NLCD data
