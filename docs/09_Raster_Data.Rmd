@@ -1129,7 +1129,7 @@ karl_files
 
 Read all of the KARL files into one RasterStack object
 ```{r}
-karl <- stack(paste0('./notebook_data/part_3/CalMnYr/', karl_files))
+karl <- stack(paste0(here('./notebook_data/part_3/CalMnYr/'), karl_files))
 
 # look at what we made!
 karl
