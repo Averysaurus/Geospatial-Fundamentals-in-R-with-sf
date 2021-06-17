@@ -7,6 +7,12 @@ knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_knit$set(root.dir = '/Users/pattyf/Documents/Dlab/workshops/2021/Geospatial-Fundamentals-in-R-with-sf')
 ```
 
+```{r}
+# install and load here() package
+if (!require("here")) install.packages("here")
+library(here)
+```
+
 # Lesson 3. Coordinate Reference Systems (CRS) & Map Projections
 
 Building off of what we learned in the previous lesson, the goal here is to improve our understanding of an integral aspect of geospatial data: Coordinate Reference Systems and Map Projections.
@@ -46,7 +52,7 @@ library(sf)
 Let's go ahead and bring back in our California County shapefile. As before, we can read the file in using `st_read` and plot it straight away.
 
 ```{r}
-counties = st_read('notebook_data/california_counties/CaliforniaCounties.shp')
+counties = st_read(here('notebook_data/california_counties/CaliforniaCounties.shp'))
 plot(counties$geometry, col='lightgrey', border='white')
 ```
 
@@ -58,7 +64,7 @@ We're going to bring in our states data, and let's do the usual operations to st
 
 ```{r}
 # Read in states shapefile
-states = st_read('notebook_data/us_states/us_states.shp')
+states = st_read(here('notebook_data/us_states/us_states.shp'))
 ```
 
 ```{r}
@@ -423,7 +429,7 @@ To see the solution, look at the hidden text below.
 # SOLUTION
 
 # 1. Bring in the CA places data
-ca_places = st_read('notebook_data/census/Places/cb_2018_06_place_500k.shp')
+ca_places = st_read(here('notebook_data/census/Places/cb_2018_06_place_500k.shp'))
 head(ca_places)
 
 # 2. Check the CRS
