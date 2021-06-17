@@ -71,7 +71,7 @@ library(raster) # reading in and operating on rasters
 
 ```{r}
 # Read in the 'sftracts_wpop' shapefile
-SFtracts <- st_read(here("./notebook_data/part_3", "sftracts_wpop"))
+SFtracts <- st_read(here("./notebook_data/part_3"), "sftracts_wpop")
 ```
 
 ## SF Properties 2015
