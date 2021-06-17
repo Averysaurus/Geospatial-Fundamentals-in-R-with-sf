@@ -4,8 +4,18 @@ output: html_document
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = '/Users/pattyf/Documents/Dlab/workshops/2021/Geospatial-Fundamentals-in-R-with-sf')
 ```
+
+Almost everyone has a different file structure on their computers. 
+Today we're going to use the [`here()`](https://here.r-lib.org/) package to load local files. 
+
+```{r}
+# install and load here() package
+if (!require("here")) install.packages("here")
+library(here)
+
+```
+
 
 # Lesson 2. Introduction to the `sf` package
 
@@ -105,7 +115,7 @@ We are going to read in a shapefile with California county data.
 
 First, take a look at the shapefile on your computer using the RStudio `Files` browser or with the R `dir()` command
 ```{r}
-dir("notebook_data/california_counties/")
+dir(here("notebook_data/california_counties/"))
 ```
 
 ### Load the data into R
@@ -113,7 +123,7 @@ dir("notebook_data/california_counties/")
 Now use `st_read` to load the data into R. Take a look at the info st_read gives us about the data.
 ```{r}
 # Read in the counties shapefile
-counties = st_read('notebook_data/california_counties/CaliforniaCounties.shp')
+counties = st_read(here('notebook_data/california_counties/CaliforniaCounties.shp'))
 ```
 
 ## 2.3 Plotting Spatial Data
@@ -318,7 +328,7 @@ We can output`sf` objects to files using the **st_write** command.
 
 ```{r}
 # Save to shapefile, deleting existing file if present
-st_write(alameda_county, "outdata/alameda_county.shp", delete_dsn = T)
+st_write(alameda_county, here("outdata/alameda_county.shp"), delete_dsn = T)
 ```
 
 One of the problems of saving to a shapefile is that our column names get truncated to 10 characters (a shapefile limitation.) 
@@ -329,22 +339,22 @@ Instead of renaming all columns with obscure names that are less than 10 charact
 
 ### Save to a GeoJSON file
 ```{r}
-st_write(alameda_county, "outdata/alameda_county.geojson", delete_dsn = T)
+st_write(alameda_county, here("outdata/alameda_county.geojson"), delete_dsn = T)
 #or
-st_write(alameda_county, "outdata/alameda_county.json", driver="GeoJSON", delete_dsn=T)
+st_write(alameda_county, here("outdata/alameda_county.json"), driver="GeoJSON", delete_dsn=T)
 ```
 
 ### Save to a [GPKG](https://en.wikipedia.org/wiki/GeoPackage) (geopackage) file.
 
 ```{r}
-st_write(alameda_county, "outdata/alameda_county.gpkg", delete_dsn=T)
+st_write(alameda_county, here("outdata/alameda_county.gpkg"), delete_dsn=T)
 ```
 
 ### Save to CSV file
 
 You can even ouput geospatial data to CSV - *check out the resultant file.*
 ```{r}
-st_write(alameda_county, "outdata/alameda_county.csv", layer_options="GEOMETRY=AS_WKT", delete_dsn=T)
+st_write(alameda_county, here("outdata/alameda_county.csv"), layer_options="GEOMETRY=AS_WKT", delete_dsn=T)
 ```
 
 ### Practice reading in these files
