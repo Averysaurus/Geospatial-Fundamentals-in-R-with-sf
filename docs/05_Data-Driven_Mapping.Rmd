@@ -425,7 +425,7 @@ This is another useful type of data transformation for making effective maps.
 Let's read in some data that is more typically encoded with point geometry - Alameda County schools.
 
 ```{r}
-schools_df = read.csv('notebook_data/alco_schools.csv')
+schools_df = read.csv(here('notebook_data/alco_schools.csv'))
 head(schools_df)
 ```
 
