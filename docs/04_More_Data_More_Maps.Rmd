@@ -203,7 +203,7 @@ First, we will read in the Berkeley bike boulevards in data. Note two things tha
 - The data have **line** geometry (our county and states data had **polygon** geometries)
 
 ```{r}
-bike_blvds = st_read(here('notebook_data/transportation/BerkeleyBikeBlvds.geojson')
+bike_blvds = st_read(here('notebook_data/transportation/BerkeleyBikeBlvds.geojson'))
 plot(bike_blvds$geometry))
 ```
 
