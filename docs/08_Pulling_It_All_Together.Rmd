@@ -4,7 +4,12 @@ output: html_document
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = '/Users/pattyf/Documents/Dlab/workshops/2021/Geospatial-Fundamentals-in-R-with-sf')
+```
+
+```{r}
+# install and load here() package
+if (!require("here")) install.packages("here")
+library(here)
 ```
 
 # 08. Pulling it all Together
@@ -91,13 +96,13 @@ We first need to prepare our data by loading both our tracts/acs and grocery dat
 ```{r,eval=FALSE}
 # read in tracts acs data
 
-tracts_acs_ac = st_read(..)
+tracts_acs_ac = st_read(here( .. ))
 ```
 
 ```{r,eval=FALSE}
 # read our grocery-data CSV into a plain data.frame
 
-grocery_pts_df = read.csv(...)
+grocery_pts_df = read.csv(here( ... ))
 ```
 
 ```{r,eval=FALSE}
@@ -130,9 +135,9 @@ head(grocery_pts_sf)
 # read in and prep data:
 #-----------------------
 # read in tracts acs data
-tracts_acs_ac = st_read('outdata/tracts_acs_sdf_ac.json')
+tracts_acs_ac = st_read(here('outdata/tracts_acs_sdf_ac.json'))
 # read in the grocery-store data
-grocery_pts_df = read.csv('notebook_data/other/ca_grocery_stores_2019_wgs84.csv')
+grocery_pts_df = read.csv(here('notebook_data/other/ca_grocery_stores_2019_wgs84.csv'))
 # coerce to an `sf` data.frame, and define the CRS
 grocery_pts_sf = st_as_sf(grocery_pts_df, 
                           coords=c('X', 'Y'),
