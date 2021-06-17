@@ -4,7 +4,12 @@ output: html_document
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = '/Users/pattyf/Documents/Dlab/workshops/2021/Geospatial-Fundamentals-in-R-with-sf')
+```
+
+```{r}
+# install and load here() package
+if (!require("here")) install.packages("here")
+library(here)
 ```
 
 
@@ -62,7 +67,7 @@ Let's use an `sf` data.frame of counties data to make a choropleth map.
 First, read in the counties data with the `st_read` function.
 
 ```{r}
-counties = st_read('notebook_data/california_counties/CaliforniaCounties.shp')
+counties = st_read(here('notebook_data/california_counties/CaliforniaCounties.shp'))
 ```
 Then, make a map of our counties.
 
@@ -488,7 +493,7 @@ Another important type of point map is the **proportional symbol map**. These ar
 The schools data does not contain any good variables for proportional symbol mapping so we will read in a supplemental file of NCES data and join it to the school points.
 
 ```{r}
-df = read.csv('notebook_data/other/PolicyMap_NCES_Data_20210429.csv')
+df = read.csv(here('notebook_data/other/PolicyMap_NCES_Data_20210429.csv'))
 #head(df,2)
 df2 = df[c('School.Name','Student.Teacher.Ratio','Free.and.Reduced.price.Lunch.Eligible.Students')]
 colnames(df2) <- c('Site','STRatio','RLunch')
@@ -505,7 +510,7 @@ tm_shape(schools_sf2) +
              col="pink", 
              border.col='black', 
              title.size="Students Eligible for Free/Reduced Lunch" ) +
-  tm_layout( legend.position = c('right','top'))
+  tm_layout(legend.position = c('right','top'))
 ```
 
 
