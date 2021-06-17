@@ -1118,8 +1118,8 @@ Data on summertime coastal fog in CA (a.k.a. Karl)
 ```{r}
 #(from http://climate.calcommons.org/dataset/monthly-summertime-fog)
 #(units are in average hours per day)
-karl_files = unique(gsub('.aux.xml', '', list.files('./notebook_data/Part_3/CalMnYr')))
-karl_files = karl_files[grep('flcc', karl_files)]
+karl_files <- unique(gsub('.aux.xml', '', list.files(here("notebook_data/part_3/CalMnYr"))))
+karl_files = test_files[grep('flcc', test_files)]
 
 # Take  a look
 karl_files
