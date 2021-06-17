@@ -4,7 +4,12 @@ output: html_document
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = '/Users/pattyf/Documents/Dlab/workshops/2021/Geospatial-Fundamentals-in-R-with-sf')
+```
+
+```{r}
+# install and load here() package
+if (!require("here")) install.packages("here")
+library(here)
 ```
 
 # Lesson 4. More Data, More Maps!
@@ -46,9 +51,9 @@ library(sf)
 
 #### Load some data
 ```{r}
-counties = st_read('notebook_data/california_counties/CaliforniaCounties.shp')
+counties = st_read(here('notebook_data/california_counties/CaliforniaCounties.shp'))
 
-ca_places = st_read('notebook_data/census/Places/cb_2018_06_place_500k.shp')
+ca_places = st_read(here('notebook_data/census/Places/cb_2018_06_place_500k.shp'))
 ```
 ## Mapping `sf` objects
 
@@ -259,7 +264,7 @@ We can see that the CRS of the bike blvds dataframe is UTM Zone 10N, NAD83. This
 Alright! Now that we have our bike boulevard data squared away, we're going to bring in our Alameda County school data.
 
 ```{r}
-schools_df = read.csv('notebook_data/alco_schools.csv')
+schools_df = read.csv(here('notebook_data/alco_schools.csv'))
 head(schools_df)
 ```
 
@@ -331,7 +336,7 @@ tm_shape(schools_utm10) +
 In Lesson 2 we discussed that you can save out `sf` data.frames in multiple file formats. You could opt for a GeoJSON, a shapefile, etc... However, for point data sets it is also an option to save it out as a CSV since each geometry only has a single X and single Y value.
 
 ```{r, eval=F}
-st_write(schools_utm10, 'outdata/schools_utm10.csv', layer_options= "geometry=AS_XY", delete_dsn = T)
+st_write(schools_utm10, here('outdata/schools_utm10.csv'), layer_options= "geometry=AS_XY", delete_dsn = T)
 ```
  
 
