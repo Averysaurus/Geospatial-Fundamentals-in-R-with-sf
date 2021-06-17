@@ -203,8 +203,8 @@ First, we will read in the Berkeley bike boulevards in data. Note two things tha
 - The data have **line** geometry (our county and states data had **polygon** geometries)
 
 ```{r}
-bike_blvds = st_read('notebook_data/transportation/BerkeleyBikeBlvds.geojson')
-plot(bike_blvds$geometry)
+bike_blvds = st_read(here('notebook_data/transportation/BerkeleyBikeBlvds.geojson')
+plot(bike_blvds$geometry))
 ```
 
 Of course, we could also use `tmap` to plot our lines:
