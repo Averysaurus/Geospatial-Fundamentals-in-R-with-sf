@@ -141,7 +141,7 @@ head(acs5_df_ac)
 Now let's also read in our census tracts again!
 
 ```{r}
-tracts_sf = st_read(here("./notebook_data/census/Tracts/cb_2018_06_tract_500k.shp", ))
+tracts_sf = st_read(here("./notebook_data/census/Tracts/cb_2018_06_tract_500k.shp"))
 ```
 
 ```{r}
