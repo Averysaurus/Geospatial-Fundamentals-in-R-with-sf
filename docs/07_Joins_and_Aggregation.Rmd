@@ -4,7 +4,12 @@ output: html_document
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = '/Users/pattyf/Documents/Dlab/workshops/2021/Geospatial-Fundamentals-in-R-with-sf')
+```
+
+```{r}
+# install and load here() package
+if (!require("here")) install.packages("here")
+library(here)
 ```
 
 # Lesson 7. Attribute and Spatial Joins
@@ -55,7 +60,7 @@ Let's read in a table of data from the US Census' 5-year American Community Surv
 ```{r}
 # Read in the ACS5 data for CA into an `sf` object.
 # Note: We force the FIPS_11_digit to be read in as a string to preserve any leading zeroes.
-acs5_df = read.csv("notebook_data/census/ACS5yr/census_variables_CA.csv")
+acs5_df = read.csv(here("notebook_data/census/ACS5yr/census_variables_CA.csv"))
 head(acs5_df)
 ```
 
@@ -136,7 +141,7 @@ head(acs5_df_ac)
 Now let's also read in our census tracts again!
 
 ```{r}
-tracts_sf = st_read("./notebook_data/census/Tracts/cb_2018_06_tract_500k.shp", )
+tracts_sf = st_read(here("./notebook_data/census/Tracts/cb_2018_06_tract_500k.shp", ))
 ```
 
 ```{r}
@@ -263,7 +268,7 @@ print(dim(tracts_acs_sf_ac))
 Let's save out our merged data so we can use it in the final notebook.
 
 ```{r}
-st_write(tracts_acs_sf_ac, './outdata/tracts_acs_sdf_ac.json', driver='GeoJSON', delete_dsn=T)
+st_write(tracts_acs_sf_ac, here('./outdata/tracts_acs_sdf_ac.json'), driver='GeoJSON', delete_dsn=T)
 ```
 
 ## Exercise: Choropleth Map
@@ -314,7 +319,7 @@ Then we'll work with that data and our `tracts_acs_sf_ac` data together.
 
 ```{r}
 # read in school data from a csv file
-schools_df = read.csv('notebook_data/alco_schools.csv')
+schools_df = read.csv(here('notebook_data/alco_schools.csv'))
 
 # promote to a spatial df
 schools_sf = st_as_sf(schools_df, coords = c('X', 'Y'), crs=4326)
