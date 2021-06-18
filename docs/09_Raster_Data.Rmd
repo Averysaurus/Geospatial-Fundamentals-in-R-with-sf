@@ -78,8 +78,8 @@ SFtracts <- st_read(here("./notebook_data/part_3"), "sftracts_wpop")
 
 ```{r}
 # Read in from CSV file
-SFhomes <- read.csv(here('./notebook_data/part_3/sf_properties.csv', 
-                    stringsAsFactors = FALSE))
+SFhomes <- read.csv(here('./notebook_data/part_3/sf_properties.csv'), 
+                    stringsAsFactors = FALSE)
 # subset the data
 SFhomes15 <- subset(SFhomes, as.numeric(SalesYear) == 2015)
 
