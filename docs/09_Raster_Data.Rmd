@@ -16,12 +16,6 @@ always_allow_html: yes
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
-# install and load here() package
-if (!require("here")) install.packages("here")
-library(here)
-```
-
 ## Part III Prep
 
 1. Open the repo at <https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-R-with-sf>
@@ -35,7 +29,7 @@ library(here)
 4. Install the required libraries in RStudio, if you do not have them already
 
 ```{r, eval=F}
-our_packages<- c("ggplot2", "sf", "tmap", "raster")
+our_packages<- c("ggplot2", "sf", "tmap", "raster", "here")
 for (i in our_packages) {
   if ( i %in% rownames(installed.packages()) == FALSE) {
     install.packages(i)
@@ -59,6 +53,7 @@ Run some raster and raster-vector operations and analyses
 Let's load the libraries we will use
 
 ```{r, message=F, warning=F}
+library(here)   # reproducible directory paths
 library(sf)     # simple features objects and methods
 library(tmap)   # mapping spatial objects
 library(raster) # reading in and operating on rasters
