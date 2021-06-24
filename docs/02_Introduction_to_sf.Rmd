@@ -274,7 +274,7 @@ colnames(counties2)<- c('county', 'pop2012', 'median_age')
 head(counties2)
 ```
 
-> Takeawy: Don't get stuck on sticky geometry! 
+> Takeaway: Don't get stuck on sticky geometry! 
 
 ### Subset rows by column value
 
